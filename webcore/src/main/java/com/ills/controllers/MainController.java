@@ -10,7 +10,6 @@ public class MainController {
 
     @RequestMapping(value = "**")
     public String loginPage(){
-
         return "login";
     }
 
