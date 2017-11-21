@@ -1,2 +1,3 @@
 *.iml
 webcore/target/
+.idea/
