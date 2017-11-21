@@ -1,3 +1,6 @@
 *.iml
 webcore/target/
 .idea/
+*.jar
+dao/target/
+services/target/
