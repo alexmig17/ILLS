@@ -17,7 +17,14 @@
         <jstl.version>1.2</jstl.version>
         <servletapi.version>2.5</servletapi.version>
     </properties>
+
+
 <dependencies>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-tx</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
     <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>

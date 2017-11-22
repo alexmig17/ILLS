@@ -11,5 +11,7 @@
 
     <artifactId>dao</artifactId>
     <packaging>jar</packaging>
-
+    <build>
+        <finalName>dao</finalName>
+    </build>
 </project>
