@@ -4,3 +4,4 @@ webcore/target/
 *.jar
 dao/target/
 services/target/
+logs/
