@@ -1,8 +1,10 @@
 package com.ills.controllers;
 
 
+import com.ills.dto.PersonDTO;
 import com.ills.entities.Person;
 import com.ills.service.SimpleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
@@ -17,6 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class MainController {
 
+    @Autowired
+    private SimpleService simpleService;
+
     @RequestMapping(value = "login")
 
     public String loginPage(){
@@ -27,11 +32,12 @@ public class MainController {
 
     @RequestMapping("getPerson")
     @ResponseBody
-    public Person getPerson(){
-        if(true){
+    public String getPerson(){
+        simpleService.getAnyPerson();
+        /*if(true){
             throw new NullPointerException();
-        }
-        return new Person();
+        }*/
+        return simpleService.getAnyPerson().toString();
     }
 
 

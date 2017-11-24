@@ -1,13 +1,13 @@
 package com.ills.dao;
 
 import com.ills.dao.Exceptions.DaoException;
-import com.ills.entities.ValidationError;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Alex on 23.11.2017.
@@ -15,6 +15,9 @@ import java.util.List;
 public class DaoImpl<E, K extends Serializable> implements Dao<E, K> {
 
     private SessionFactory sessionFactory;
+
+
+
     private Class<E> type;
 
     //private static Logger log = Logger.getLogger(DaoImpl.class);
@@ -25,18 +28,20 @@ public class DaoImpl<E, K extends Serializable> implements Dao<E, K> {
 
 
     @Override
-    public List<E> getAll() throws DaoException {
-        List<E> list;
+    public Optional<List<E>> getAll() throws DaoException {
+
+        Optional optional;
         try {
-            list = getSession().createCriteria(type).list();
+            optional = Optional.ofNullable(getSession().createCriteria(type).list());
         } catch (HibernateException e) {
             throw new DaoException(e);
         }
-        return list;
+
+        return optional;
     }
 
     @Override
-    public E getByID(K id) throws DaoException {
+    public Optional<E> getByID(K id) throws DaoException {
         E entity;
         try {
             entity = (E)getSession().get(type, id);
@@ -44,12 +49,30 @@ public class DaoImpl<E, K extends Serializable> implements Dao<E, K> {
         } catch (HibernateException e){
             throw new DaoException(e);
         }
-        return entity;
+        return Optional.ofNullable(entity);
     }
 
-
+    /**
+     * update detached entity
+     * @param entity
+     */
     @Override
-    public void makePersistent(E entity) throws DaoException {
+    public void update(E entity) {
+        try {
+            getSession().update(entity);
+        } catch (HibernateException e) {
+            throw new DaoException(e);
+        }
+
+    }
+
+    /**
+     * update detached entity or add transient entity
+     * @param entity detached or transient
+     * @throws DaoException
+     */
+    @Override
+    public void addOrUpdate(E entity) throws DaoException {
 
         try {
             getSession().saveOrUpdate(entity);
@@ -57,6 +80,23 @@ public class DaoImpl<E, K extends Serializable> implements Dao<E, K> {
             throw new DaoException(e);
         }
     }
+
+    /**
+     *
+     * @param entity detached instance
+     * @return merged persistent instance
+     */
+    @Override
+    public Optional<E> merge(E entity) {
+        Optional optional;
+        try {
+            optional = Optional.ofNullable(getSession().merge(entity));
+        } catch (HibernateException e) {
+            throw new DaoException(e);
+        }
+        return optional;
+    }
+
 
     @Override
     public boolean delete(E entity) throws DaoException {
@@ -84,6 +124,14 @@ public class DaoImpl<E, K extends Serializable> implements Dao<E, K> {
     @Override
     public Class<E> getEntityClass() {
         return type;
+    }
+
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
     private Session getSession(){

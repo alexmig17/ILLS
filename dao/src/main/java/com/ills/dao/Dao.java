@@ -1,10 +1,10 @@
 package com.ills.dao;
 
 import com.ills.dao.Exceptions.DaoException;
-import com.ills.entities.ValidationError;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * DAO - data access Object
@@ -20,7 +20,7 @@ public interface Dao <E, K extends Serializable>{
      * @return
      * @throws DaoException
      */
-    List<E> getAll() throws DaoException;
+    Optional<List<E>> getAll() throws DaoException;
 
     /**
      * method return entity by id
@@ -28,14 +28,28 @@ public interface Dao <E, K extends Serializable>{
      * @return
      * @throws DaoException
      */
-    E getByID(K id) throws DaoException;
+    Optional<E> getByID(K id) throws DaoException;
+
+    /**
+     *
+     * @param entity
+     */
+    void update(E entity);
+
+
+    /**
+     *
+     * @param entity
+     * @return
+     */
+    Optional<E> merge(E entity);
 
     /**
 
      * @param entity
      * @throws DaoException
      */
-    void makePersistent(E entity) throws DaoException;
+    void addOrUpdate(E entity) throws DaoException;
 
     /**
      * delete existing entity
