@@ -5,3 +5,4 @@ webcore/target/
 dao/target/
 services/target/
 logs/
+*.rej
