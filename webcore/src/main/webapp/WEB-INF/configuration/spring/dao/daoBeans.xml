@@ -15,5 +15,13 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
+    <bean id="personDAO"
+          class="com.ills.dao.DaoImpl">
+        <constructor-arg>
+            <value>com.ills.entities.Person</value>
+        </constructor-arg>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
 
 </beans>
