@@ -4,46 +4,48 @@ package com.ills.controllers;
 import com.ills.dto.PersonDTO;
 import com.ills.entities.Person;
 import com.ills.service.SimpleService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.jta.JtaTransactionManager;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @Controller
+@Api(value = "PERSON", tags = "Person")
 public class MainController {
 
     @Autowired
     private SimpleService simpleService;
 
-    @RequestMapping(value = "login")
 
+    @ApiOperation(value = "getAllPerson", notes = "Апи для работы с loginPage")
+    @RequestMapping(value = "login", method = RequestMethod.GET)
     public String loginPage(){
 
         SimpleService simpleService;
         return "login";
     }
 
-    @RequestMapping("getPerson")
+
+    @RequestMapping(value = "getPerson", method = RequestMethod.GET)
+    @ApiOperation(value = "getAllPerson", notes = "Апи для работы с loginPage")
     @ResponseBody
-    public String getPerson(){
-        simpleService.getAnyPerson();
-        /*if(true){
-            throw new NullPointerException();
-        }*/
-        return simpleService.getAnyPerson().toString();
+    public List<Person> getPerson(){
+        return simpleService.getAnyPerson();
     }
 
-
-
-
-
+    @RequestMapping(value = "post", method = RequestMethod.POST)
+    @ApiOperation(value = "setPerson", notes = "Апи для работы с loginPage")
+    @ResponseBody
+    public void setPerson(@RequestBody Person person){
+    }
 
     public static void main(String[] args) {
 

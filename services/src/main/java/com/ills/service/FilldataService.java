@@ -3,7 +3,7 @@ package com.ills.service;
 
 import com.ills.dao.Dao;
 import com.ills.entities.Person;
-import com.ills.entities.User2;
+import com.ills.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +16,7 @@ import java.util.Date;
 public class FilldataService {
 
     @Autowired
-    private Dao<User2, String> userDAO;
+    private Dao<User, String> userDAO;
 
     @Autowired
     private Dao<Person, String> personDAO;
@@ -28,7 +28,11 @@ public class FilldataService {
         person.setLastName("Drapun");
         ZoneId defaultZoneId = ZoneId.systemDefault();
         Date date = Date.from(LocalDate.parse("1988-09-17").atStartOfDay(defaultZoneId).toInstant());
-        person.setDob(date);
+        //person.setDob(date);
+        User user = new User();
+        user.setLogin("admin");
+        user.setPassword("admin");
+        //person.setUser(user);
         personDAO.add(person);
 
 
@@ -36,10 +40,10 @@ public class FilldataService {
 
     @Transactional
     public void fillUser(){
-        User2 user2 = new User2();
-        user2.setLogin("admin");
-        user2.setPassword("admin");
-        userDAO.add(user2);
+        User user = new User();
+        user.setLogin("admin");
+        user.setPassword("admin");
+        userDAO.add(user);
     }
 
 }

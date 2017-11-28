@@ -8,21 +8,22 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "USER")
-public class User2 {
+public class User {
 
     @Id
-    /*@GeneratedValue(strategy = GenerationType.IDENTITY )*/
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "USR_OID")
+    private Long oid;
     private String login;
     private String password;
 
 
-    public String getId() {
-        return id;
+    public Long getId() {
+        return oid;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setId(Long oid) {
+        this.oid = oid;
     }
 
     public String getLogin() {

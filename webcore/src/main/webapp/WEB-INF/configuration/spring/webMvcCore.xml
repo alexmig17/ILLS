@@ -2,7 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="
        http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
@@ -10,11 +10,15 @@
        http://www.springframework.org/schema/context/spring-context-4.3.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-4.3.xsd
+               http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
         ">
-    <import resource="dao/daoBeans.xml" />
-    <import resource="production.db/dbConfiguration.xml" />
+    <import resource="dao/daoBeans.xml"/>
+    <import resource="production.db/dbConfiguration.xml"/>
+
+    <mvc:annotation-driven/>
     <context:annotation-config/>
-    <context:component-scan base-package="com.ills" />
+    <context:component-scan base-package="com.ills"/>
 
 
     <bean id="simpleMappingExceptionResolver"
@@ -24,13 +28,13 @@
     </bean>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/pages/" />
-        <property name="suffix" value=".jsp" />
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp"/>
     </bean>
 
     <bean id="userDAO"
           class="com.ills.dao.DaoImpl">
-        <constructor-arg type="java.lang.Class" value="com.ills.entities.User2" />
+        <constructor-arg type="java.lang.Class" value="com.ills.entities.User"/>
 
 
         <property name="sessionFactory" ref="sessionFactory"/>
@@ -38,8 +42,13 @@
 
     <bean id="personDAO"
           class="com.ills.dao.DaoImpl">
-        <constructor-arg type="java.lang.Class" value="com.ills.entities.Person" />
+        <constructor-arg type="java.lang.Class" value="com.ills.entities.Person"/>
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
+
+    <mvc:resources mapping="/swagger-ui.html" location="classpath:/META-INF/resources/"/>
+    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+
+    <bean name="/applicationSwaggerConfig" class="conf.SwaggerConfig"/>
 </beans>
