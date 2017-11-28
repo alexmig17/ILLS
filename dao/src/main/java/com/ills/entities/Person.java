@@ -11,27 +11,21 @@ import java.util.Date;
 public class Person {
 
     @Id
-    @Column(name = "ID")
-    @GenericGenerator(name = "entity_id", strategy = "com.ills.generator.keys.EntityKeyGenerator", parameters = {
-            @org.hibernate.annotations.Parameter(
-                    name = "sequence_name", value = "hibernate_sequence"),
-            @org.hibernate.annotations.Parameter(
-                    name = "sequence_prefix", value = "CTC_"),
-    })
-    @GeneratedValue(generator = "entity_id" )
-    private String id;
+    @GeneratedValue(generator = "AppSeqStore", strategy = GenerationType.AUTO)
+    private Long id;
+
     private String firstName;
     private String lastName;
     private Date dob;
-    /*private User user;*/
+
     private String homePhone;
 
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

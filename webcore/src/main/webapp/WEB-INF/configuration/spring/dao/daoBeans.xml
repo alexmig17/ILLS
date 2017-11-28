@@ -4,24 +4,9 @@
        xsi:schemaLocation="
        http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
-
        ">
 
-    <bean id="userDAO"
-          class="com.ills.dao.DaoImpl">
-        <constructor-arg>
-            <value>com.ills.entities.User</value>
-        </constructor-arg>
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
 
-    <bean id="personDAO"
-          class="com.ills.dao.DaoImpl">
-        <constructor-arg>
-            <value>com.ills.entities.Person</value>
-        </constructor-arg>
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
 
 
 </beans>

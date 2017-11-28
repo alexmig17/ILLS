@@ -11,12 +11,10 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-4.3.xsd
         ">
-
-
-    <import resource="/dao/daoBeans.xml" />
-    <import resource="/production.db/dbConfiguration.xml" />
+    <import resource="dao/daoBeans.xml" />
+    <import resource="production.db/dbConfiguration.xml" />
     <context:annotation-config/>
-    <context:component-scan base-package="com.ills.controllers, com.ills.service" />
+    <context:component-scan base-package="com.ills" />
 
 
     <bean id="simpleMappingExceptionResolver"
@@ -28,6 +26,20 @@
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/" />
         <property name="suffix" value=".jsp" />
+    </bean>
+
+    <bean id="userDAO"
+          class="com.ills.dao.DaoImpl">
+        <constructor-arg type="java.lang.Class" value="com.ills.entities.User2" />
+
+
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="personDAO"
+          class="com.ills.dao.DaoImpl">
+        <constructor-arg type="java.lang.Class" value="com.ills.entities.Person" />
+        <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
 </beans>
