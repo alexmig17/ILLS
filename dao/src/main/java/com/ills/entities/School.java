@@ -1,6 +1,5 @@
 package com.ills.entities;
 
-import javax.annotation.Generated;
 import javax.persistence.*;
 
 /**

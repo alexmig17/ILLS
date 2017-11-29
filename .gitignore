@@ -6,3 +6,6 @@ dao/target/
 services/target/
 logs/
 *.rej
+*.project
+*.classpath
+*.settings

@@ -1,7 +1,7 @@
 package com.ills.entities;
 
-import javax.persistence.*;
 import java.util.List;
+import javax.persistence.*;
 
 /**
  * Created by Alex on 28.11.2017.
@@ -23,10 +23,7 @@ public class Student {
     @JoinColumn(name = "STD_SCH_OID")
     private School school;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "STD_ENR_STD_OID")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "student")
     private List<StudentEnrollment> studentEnrollments;
-
-
-
 
 }
