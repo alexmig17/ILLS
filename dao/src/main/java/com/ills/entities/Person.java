@@ -12,7 +12,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "PERSON")
-@ApiModel(value = "PEROSN")
+@ApiModel(value = "PERSON")
 public class Person {
 
     @Id
@@ -44,6 +44,38 @@ public class Person {
     @JoinColumn(name="PSN_USR_OID", unique=false, nullable=true)
     private User user;
 
+    public Long getOid() {
+        return oid;
+    }
+
+    public void setOid(Long oid) {
+        this.oid = oid;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
     public Date getDate() {
         return date;
     }
@@ -68,51 +100,19 @@ public class Person {
         this.dateTime = dateTime;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Date getDob() {
-        return dob;
-    }
-
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
-
-    public Long getOid() {
-        return oid;
-    }
-
-    public void setOid(Long id) {
-        this.oid = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public String getHomePhone() {
         return homePhone;
     }
 
     public void setHomePhone(String homePhone) {
         this.homePhone = homePhone;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

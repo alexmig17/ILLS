@@ -34,11 +34,11 @@ public class MainController {
     }
 
 
-    @RequestMapping(value = "getPerson", method = RequestMethod.GET)
-    @ApiOperation(value = "getAllPerson", notes = "Апи для работы с loginPage")
+    @RequestMapping(value = "getAllPersons", method = RequestMethod.GET)
+    @ApiOperation(value = "getAllPersons", notes = "Апи для работы с loginPage")
     @ResponseBody
     public List<Person> getPerson(){
-        return simpleService.getAnyPerson();
+        return simpleService.getAllPersons();
     }
 
     @RequestMapping(value = "post", method = RequestMethod.POST)

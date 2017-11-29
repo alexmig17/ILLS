@@ -18,7 +18,7 @@ public class SimpleService {
     private Dao<Person, String> personDAO;
 
     @Transactional
-    public List<Person> getAnyPerson(){
+    public List<Person> getAllPersons(){
         List<Person> list = personDAO.getAll().orElseGet(() -> new ArrayList<>());
 
         return list;
