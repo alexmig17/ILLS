@@ -1,10 +1,6 @@
 package com.ills.entities;
 
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import org.hibernate.annotations.Formula;
-import org.hibernate.annotations.Type;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 
@@ -13,7 +9,7 @@ import java.util.Date;
 @Entity
 @Table(name = "PERSON")
 @ApiModel(value = "PERSON")
-public class Person {
+public class Person implements EntityI {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,12 +26,12 @@ public class Person {
     @Column(name="PRN_DOB")
     private Date dob;
 
-    @Temporal(TemporalType.DATE)
+    /*@Temporal(TemporalType.DATE)
     private Date date;
     @Temporal(TemporalType.TIME)
     private Date time;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dateTime;
+    private Date dateTime;*/
 
     @Column(name="PRN_HOME_PHONE")
     private String homePhone;
@@ -74,30 +70,6 @@ public class Person {
 
     public void setDob(Date dob) {
         this.dob = dob;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public Date getTime() {
-        return time;
-    }
-
-    public void setTime(Date time) {
-        this.time = time;
-    }
-
-    public Date getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(Date dateTime) {
-        this.dateTime = dateTime;
     }
 
     public String getHomePhone() {

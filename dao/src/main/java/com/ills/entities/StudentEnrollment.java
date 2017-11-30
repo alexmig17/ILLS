@@ -8,7 +8,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "STUDENT_ENROLLMENT")
-public class StudentEnrollment {
+public class StudentEnrollment implements EntityI{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

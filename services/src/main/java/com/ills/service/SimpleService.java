@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SimpleService {
@@ -18,10 +19,10 @@ public class SimpleService {
     private Dao<Person, String> personDAO;
 
     @Transactional
-    public List<Person> getAllPersons(){
+    public List<PersonDTO> getAllPersons(){
         List<Person> list = personDAO.getAll().orElseGet(() -> new ArrayList<>());
-
-        return list;
+        List<PersonDTO> persons = list.stream().map(person -> new PersonDTO(person)).collect(Collectors.toList());
+        return persons;
     }
 
 }
