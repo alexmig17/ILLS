@@ -27,28 +27,32 @@
         <property name="exceptionAttribute" value="ex"/>
     </bean>
 
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>
         <property name="suffix" value=".jsp"/>
-    </bean>
+    </bean>-->
 
     <bean id="userDAO"
           class="com.ills.dao.DaoImpl">
         <constructor-arg type="java.lang.Class" value="com.ills.entities.User"/>
-
-
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-
     <bean id="personDAO"
           class="com.ills.dao.DaoImpl">
         <constructor-arg type="java.lang.Class" value="com.ills.entities.Person"/>
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-
-
+    <bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer ">
+        <property name="definitions">
+            <list>
+                <value>/WEB-INF/configuration/tiles/tilesDefinition.xml</value>
+            </list>
+        </property>
+    </bean>
+    <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"></property>
+    </bean>
     <mvc:resources mapping="/swagger-ui.html" location="classpath:/META-INF/resources/"/>
     <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
-
     <bean name="/applicationSwaggerConfig" class="conf.SwaggerConfig"/>
 </beans>

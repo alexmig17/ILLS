@@ -43,4 +43,11 @@ public class MainController {
     @ResponseBody
     public void setPerson(@RequestBody Person person){
     }
+
+    @RequestMapping(value = "main", method = RequestMethod.GET)
+    @ApiOperation(value = "main", notes = "Возвращает главную страницу")
+    public String mainPage(){
+        return "home";
+    }
+
 }
