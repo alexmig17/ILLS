@@ -7,6 +7,8 @@ import com.ills.service.SimpleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
@@ -48,6 +50,24 @@ public class MainController {
     @ApiOperation(value = "main", notes = "Возвращает главную страницу")
     public String mainPage(){
         return "home";
+    }
+
+    @RequestMapping(value = "admin", method = RequestMethod.GET)
+    @ApiOperation(value = "admin", notes = "Возвращает главную страницу")
+    public String adminPage(){
+        return "home";
+    }
+
+    public static void main(String[] args) {
+        int i =0;
+        while (i  < 10) {
+            String password = "password";
+            Md5PasswordEncoder passwordEncoder = new Md5PasswordEncoder();
+            String hashedPassword = passwordEncoder.encodePassword()
+
+            System.out.println(hashedPassword);
+            i++;
+        }
     }
 
 }

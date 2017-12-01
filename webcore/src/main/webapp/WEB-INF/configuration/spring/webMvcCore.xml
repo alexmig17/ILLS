@@ -15,7 +15,7 @@
         ">
     <import resource="dao/daoBeans.xml"/>
     <import resource="production.db/dbConfiguration.xml"/>
-    <import resource="security/securityConfiguration.xml"/>
+    <!--<import resource="security/securityConfiguration.xml"/>-->
 
     <mvc:annotation-driven/>
     <context:annotation-config/>

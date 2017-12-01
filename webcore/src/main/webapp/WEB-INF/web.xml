@@ -7,7 +7,8 @@
 
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>WEB-INF/configuration/spring/springAppContext.xml</param-value>
+    <param-value>WEB-INF/configuration/spring/springAppContext.xml,
+      WEB-INF/configuration/spring/security/securityConfiguration.xml</param-value>
   </context-param>
 
   <listener>
@@ -37,6 +38,16 @@
       <el-ignored>false</el-ignored>
     </jsp-property-group>
   </jsp-config>
+
+  <filter>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <servlet-name>springServlet</servlet-name>
+  </filter-mapping>
 
 
 </web-app>
