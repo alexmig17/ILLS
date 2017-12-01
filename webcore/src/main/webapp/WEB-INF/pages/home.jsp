@@ -7,5 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<p>it is main page</p>
+<h1>Welcome!</h1>
+
+<p>Click <a th:href="@{/hello}">here</a> to see a greeting.</p>
 
