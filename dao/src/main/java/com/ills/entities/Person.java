@@ -36,7 +36,7 @@ public class Person implements EntityI {
     @Column(name="PRN_HOME_PHONE")
     private String homePhone;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinColumn(name="PSN_USR_OID", unique=false, nullable=true)
     private User user;
 

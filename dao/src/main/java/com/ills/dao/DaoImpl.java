@@ -1,6 +1,7 @@
 package com.ills.dao;
 
 import com.ills.dao.Exceptions.DaoException;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -119,6 +120,11 @@ public class DaoImpl<E, K extends Serializable> implements Dao<E, K> {
             throw new DaoException(e);
         }
         return id;
+    }
+
+    @Override
+    public Criteria getCriteria() throws DaoException {
+        return getSession().createCriteria(type);
     }
 
     @Override

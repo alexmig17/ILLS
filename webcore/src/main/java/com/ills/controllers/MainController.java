@@ -58,16 +58,5 @@ public class MainController {
         return "home";
     }
 
-    public static void main(String[] args) {
-        int i =0;
-        while (i  < 10) {
-            String password = "password";
-            Md5PasswordEncoder passwordEncoder = new Md5PasswordEncoder();
-            String hashedPassword = passwordEncoder.encodePassword()
-
-            System.out.println(hashedPassword);
-            i++;
-        }
-    }
 
 }

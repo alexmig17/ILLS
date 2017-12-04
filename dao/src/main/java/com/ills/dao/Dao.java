@@ -1,6 +1,7 @@
 package com.ills.dao;
 
 import com.ills.dao.Exceptions.DaoException;
+import org.hibernate.Criteria;
 
 import java.io.Serializable;
 import java.util.List;
@@ -68,6 +69,14 @@ public interface Dao <E, K extends Serializable>{
      * @throws DaoException
      */
     K add(E entity) throws DaoException;
+
+
+    /**
+     * Return created criteria
+     *
+     * @throws DaoException
+     */
+    Criteria getCriteria() throws DaoException;
 
     /**
      *

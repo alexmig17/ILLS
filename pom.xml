@@ -134,6 +134,16 @@
             <version>2.6.1</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.5</version>
+        </dependency>
     </dependencies>
     <build>
     <finalName>SpringExample</finalName>
@@ -162,7 +172,7 @@
             <version>2.2</version>
             <configuration>
                 <server>tomcatServer</server>
-                <url>http://localhost:8080/manager/text</url>
+                <url>http://localhost:8181/manager/text</url>
                 <username>admin</username>
                 <password>admin</password>
                 <path>/ills</path>

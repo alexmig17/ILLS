@@ -8,18 +8,23 @@
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 
-
+<beans:import resource="../webMvcCore.xml"/>
     <http auto-config="true">
-        <intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/fillDb/person" access="isAnonymous()" />
+        <intercept-url pattern="/login" access="isAnonymous()" />
+        <intercept-url pattern="/admin" access="hasAuthority('OP_test')" />
+        <intercept-url pattern="/**" access="isAuthenticated()" />
     </http>
     <authentication-manager>
-        <authentication-provider>
+        <authentication-provider user-service-ref="customUserDetailsService">
             <password-encoder ref="encoder" />
-            <user-service>
+            <!--<user-service>
                 <user name="admin" password="$2a$10$VY3sBDcXzLeXcVhedlMmYeFytCjdWt5BmFZStAC/pDr561GW/PNsm" authorities="ROLE_ADMIN" />
-            </user-service>
+            </user-service>-->
         </authentication-provider>
     </authentication-manager>
+
+    <beans:bean id="customUserDetailsService" class="com.ills.service.security.CustomUserDetailsService" />
 
     <beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" >
         <beans:constructor-arg name ="strength" value ="10" />

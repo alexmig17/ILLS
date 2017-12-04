@@ -25,4 +25,9 @@
         <put-attribute name="content" value="/WEB-INF/pages/student/studentView.jsp" />
     </definition>
 
+    <definition name="error" extends="base-definition">
+        <put-attribute name="title" value="error page" />
+        <put-attribute name="content" value="/WEB-INF/pages/error.jsp" />
+    </definition>
+
 </tiles-definitions>
