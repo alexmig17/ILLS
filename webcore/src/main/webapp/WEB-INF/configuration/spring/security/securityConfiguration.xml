@@ -12,15 +12,13 @@
     <http auto-config="true">
         <intercept-url pattern="/fillDb/person" access="isAnonymous()" />
         <intercept-url pattern="/login" access="isAnonymous()" />
-        <intercept-url pattern="/admin" access="hasAuthority('OP_test')" />
+        <intercept-url pattern="/static/**" access="permitAll" />
+        <!--<intercept-url pattern="/admin" access="hasAuthority('OP_test')" />-->
         <intercept-url pattern="/**" access="isAuthenticated()" />
     </http>
     <authentication-manager>
         <authentication-provider user-service-ref="customUserDetailsService">
             <password-encoder ref="encoder" />
-            <!--<user-service>
-                <user name="admin" password="$2a$10$VY3sBDcXzLeXcVhedlMmYeFytCjdWt5BmFZStAC/pDr561GW/PNsm" authorities="ROLE_ADMIN" />
-            </user-service>-->
         </authentication-provider>
     </authentication-manager>
 

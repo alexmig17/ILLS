@@ -21,26 +21,28 @@
 
     <link rel="stylesheet" href="${css}/components/common.css">
     <script type="text/javascript" data-main="${js}/components/require.controller" src="${js}/libs/require.js"></script>
+
+
 </head>
 <body>
 
-<header class="wrap header">
+<header id="header" class="wrap header">
     <s:insertAttribute name="header"/>
 </header>
-<div class="wrap action">
-</div>
+
+
 <section class="wrap main">
     <section class="wrap-in">
-        <nav class="sidebar">
+        <nav class="sidebar" id ="sidebar">
             <s:insertAttribute name="menu"/>
         </nav>
-        <section class="mainside">
+        <section class="mainside" id="content">
             <s:insertAttribute name="content"/>
         </section>
     </section>
 </section>
 <div class="push"></div>
-<footer class="wrap footer">
+<footer class="wrap footer" id="footer">
     <s:insertAttribute name="footer"/>
 </footer>
 <div id="imgUrl" attr="${img}"/>

@@ -14,8 +14,11 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.jta.JtaTransactionManager;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -53,9 +56,11 @@ public class MainController {
     }
 
     @RequestMapping(value = "admin", method = RequestMethod.GET)
-    @ApiOperation(value = "admin", notes = "Возвращает главную страницу")
-    public String adminPage(){
-        return "home";
+    @ApiOperation(value = "admin", notes = "Возвращает админку")
+    public String adminPage(Model model){
+        List<String> menues = new ArrayList<>(Arrays.asList("Пользователи", "Школа"));
+        model.addAttribute("menu", menues);
+        return "admin";
     }
 
 

@@ -7,3 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<footer>
+  <p>Super copyright</p>
+  <p>Contact information: <a href="mailto:alexmig17@mail.ru">
+  my email</a>.</p>
+</footer>
