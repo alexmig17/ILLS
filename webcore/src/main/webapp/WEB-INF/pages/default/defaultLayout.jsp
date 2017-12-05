@@ -25,6 +25,9 @@
 
 </head>
 <body>
+<div class="wrapper">
+
+<div class="content">
 
 <header id="header" class="wrap header">
     <s:insertAttribute name="header"/>
@@ -42,9 +45,13 @@
     </section>
 </section>
 <div class="push"></div>
-<footer class="wrap footer" id="footer">
+</div>
+<div class="footer" >
+<footer id="footer">
     <s:insertAttribute name="footer"/>
 </footer>
 <div id="imgUrl" attr="${img}"/>
+</div>
+</div>
 </body>
 </html>
