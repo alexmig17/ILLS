@@ -48,7 +48,7 @@ public class FilldataService {
         Role role = new Role();
         userRole.setRole(role);
         userRole.setUser(user);
-        Permission permission = new Permission();
+        PermissionForRole permission = new PermissionForRole();
         permission.setName("test");
 
         RolePermission rolePermission = new RolePermission();

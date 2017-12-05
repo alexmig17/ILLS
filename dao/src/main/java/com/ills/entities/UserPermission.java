@@ -20,14 +20,8 @@ public class UserPermission
     private long oid;
 
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USR_PRM_PRM_OID", nullable = false)
     private Permission permission;
-
-
-
-
-
 
 }

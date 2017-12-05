@@ -6,8 +6,10 @@ import javax.persistence.*;
  * Created by Alex on 02.12.2017.
  */
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "PRM_TYPE")
 @Table(name = "PERMISSION")
-public class Permission {
+abstract public class Permission {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

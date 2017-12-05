@@ -21,7 +21,7 @@ public class RolePermission {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "ROL_PRM_PRM_OID")
-    private Permission permission;
+    private PermissionForRole permission;
 
     public long getOid() {
         return oid;
@@ -39,11 +39,11 @@ public class RolePermission {
         this.role = role;
     }
 
-    public Permission getPermission() {
+    public PermissionForRole getPermission() {
         return permission;
     }
 
-    public void setPermission(Permission permission) {
+    public void setPermission(PermissionForRole permission) {
         this.permission = permission;
     }
 }

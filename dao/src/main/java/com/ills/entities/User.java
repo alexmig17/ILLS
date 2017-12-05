@@ -40,8 +40,8 @@ public class User implements EntityI {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<UserExcludePermission> excludePermissions;
 
-    /*@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")*/
-    /*private List<UserIncludePermission> includePermissions;*/
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<UserIncludePermission> includePermissions;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserRole> userRoles;
