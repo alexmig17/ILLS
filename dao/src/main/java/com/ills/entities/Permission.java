@@ -11,6 +11,10 @@ import javax.persistence.*;
 @Table(name = "PERMISSION")
 abstract public class Permission {
 
+    public enum PermissionType{
+        ROLE, MENU, MENU_ITEM
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "PRM_OID")
@@ -18,6 +22,10 @@ abstract public class Permission {
 
     @Column(name = "PRM_NAME")
     private String name;
+
+
+    @Column(name = "PRM_TYPE")
+    private PermissionType type;
 
     public long getOid() {
         return oid;

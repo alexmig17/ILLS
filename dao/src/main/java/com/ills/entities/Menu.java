@@ -27,8 +27,8 @@ public class Menu {
     private List<Menu> listMenu;*/
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MNU_PRM_OID", nullable = false)
-    private PermissionForMenu permission;
+    @JoinColumn(name = "MNU_PRM_OID")
+    private Permission permission;
 
 
 

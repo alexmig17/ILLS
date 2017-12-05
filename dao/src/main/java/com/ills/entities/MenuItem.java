@@ -27,7 +27,7 @@ public class MenuItem {
     /*private MenuItem parentItem;*/
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MNU_PRM_OID", nullable = false)
-    private PermissionForMenuItem permission;
+    @JoinColumn(name = "MNU_PRM_OID")
+    private Permission permission;
 
 }
