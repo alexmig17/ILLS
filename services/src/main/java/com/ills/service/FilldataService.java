@@ -1,27 +1,25 @@
 package com.ills.service;
 
-
 import com.ills.dao.Dao;
 import com.ills.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 
 @Service
 public class FilldataService {
 
     @Autowired
-    private Dao<User, String> userDAO;
+    private Dao<User, Long> userDAO;
 
     @Autowired
-    private Dao<Person, String> personDAO;
+    private Dao<Person, Long> personDAO;
+
+    @Autowired
+    private Dao<Menu, Long> menuDAO;
 
     @Autowired
     private BCryptPasswordEncoder encoder;
@@ -53,5 +51,14 @@ public class FilldataService {
         role.setRoleName("ROLE_ADMIN");
         role.setRolePermissions(new ArrayList<>(Arrays.asList(rolePermission)));
         personDAO.add(person);
+
+        Menu menu = new Menu();
+        menu.setName("admin");
+        MenuItem item = new MenuItem();
+        item.setContext("admin.student");
+        item.setMenu(menu);
+        item.setName("student");
+        menu.setItems(new ArrayList<>(Arrays.asList(item)));
+        menuDAO.add(menu);
     }
 }

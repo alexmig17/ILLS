@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "MNU_MENU")
+@Table(name = "MENU")
 public class Menu {
 
     @Id
@@ -20,20 +20,56 @@ public class Menu {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "menu")
     private List<MenuItem> items;
 
-    /*@ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable( name = "MENU_MENU", joinColumns = { @JoinColumn(name = "employee_id") },
-                    inverseJoinColumns = { @JoinColumn(name = "project_id") }
-                )
-    private List<Menu> listMenu;*/
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "MENU_GO_TO", joinColumns = {
+            @JoinColumn(name = "MGT_FROM_MNU_OID")},
+            inverseJoinColumns = {@JoinColumn(name = "MGT_AVAILABLE_MNU_OID")
+    })
+    private List<Menu> listMenu;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MNU_PRM_OID")
     private Permission permission;
 
+    public long getOid() {
+        return oid;
+    }
 
+    public void setOid(long oid) {
+        this.oid = oid;
+    }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public List<MenuItem> getItems() {
+        return items;
+    }
+
+    public void setItems(List<MenuItem> items) {
+        this.items = items;
+    }
+
+    public List<Menu> getListMenu() {
+        return listMenu;
+    }
+
+    public void setListMenu(List<Menu> listMenu) {
+        this.listMenu = listMenu;
+    }
+
+    public Permission getPermission() {
+        return permission;
+    }
+
+    public void setPermission(Permission permission) {
+        this.permission = permission;
+    }
 
 
 }

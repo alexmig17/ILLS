@@ -22,11 +22,11 @@
     <context:component-scan base-package="com.ills, conf.security"/>
     <mvc:resources mapping="/static/**" location="/static/" />
 
-    <bean id="simpleMappingExceptionResolver"
+    <!--<bean id="simpleMappingExceptionResolver"
           class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="defaultErrorView" value="error"/>
         <property name="exceptionAttribute" value="ex"/>
-    </bean>
+    </bean>-->
 
     <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>
@@ -43,6 +43,13 @@
         <constructor-arg type="java.lang.Class" value="com.ills.entities.Person"/>
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    <bean id="menuDAO"
+          class="com.ills.dao.DaoImpl">
+        <constructor-arg type="java.lang.Class" value="com.ills.entities.Menu"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+
     <bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer ">
         <property name="definitions">
             <list>
