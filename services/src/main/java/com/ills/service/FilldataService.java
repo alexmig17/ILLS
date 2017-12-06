@@ -31,38 +31,27 @@ public class FilldataService {
         Person person = new Person();
         person.setFirstName("Alexey");
         person.setLastName("Drapun");
-        ZoneId defaultZoneId = ZoneId.systemDefault();
-        Date date = Date.from(LocalDate.parse("1988-09-17").atStartOfDay(defaultZoneId).toInstant());
+        //ZoneId defaultZoneId = ZoneId.systemDefault();
+        //Date date = Date.from(LocalDate.parse("1988-09-17").atStartOfDay(defaultZoneId).toInstant());
         //person.setDob(date);
         User user = new User();
-
         user.setLogin("admin");
         user.setPassword(encoder.encode("password"));
         person.setUser(user);
-
-
         UserRole userRole = new UserRole();
-
         user.setUserRoles(new ArrayList<>(Arrays.asList(userRole)));
-
         Role role = new Role();
         userRole.setRole(role);
         userRole.setUser(user);
-        PermissionForRole permission = new PermissionForRole();
+        Permission permission = new Permission();
         permission.setName("test");
+        permission.setType(Permission.PermissionType.ROLE);
 
         RolePermission rolePermission = new RolePermission();
         rolePermission.setRole(role);
         rolePermission.setPermission(permission);
         role.setRoleName("ROLE_ADMIN");
         role.setRolePermissions(new ArrayList<>(Arrays.asList(rolePermission)));
-
-
         personDAO.add(person);
-
-
     }
-
-
-
 }

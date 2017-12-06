@@ -22,12 +22,19 @@ public class MenuItem {
     @JoinColumn(name = "MNI_MNU_OID", nullable = false)
     private Menu menu;
 
-    /*private List<MenuItem> items;*/
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "parentItem")
+    private List<MenuItem> items;
 
-    /*private MenuItem parentItem;*/
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MNI_MNI_OID")
+    private MenuItem parentItem;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MNU_PRM_OID")
     private Permission permission;
+
+    
+
+
 
 }

@@ -7,7 +7,6 @@ import javax.persistence.*;
  */
 @Entity
 @DiscriminatorValue("EXCLUDE")
-@Table(name = "USER_PERMISSION")
 public class UserExcludePermission extends UserPermission{
 
     @ManyToOne(fetch = FetchType.LAZY)
