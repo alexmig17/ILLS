@@ -15,12 +15,15 @@ public class MenuItem {
     @Column(name = "MNI_CONTEXT")
     private String context;
 
-    @Column(name = "MNI_NAME")
+    @Column(name = "MNI_NAME", unique = true)
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MNI_MNU_OID", nullable = false)
     private Menu menu;
+
+    @Column(name ="MNI_LEVEL")
+    private int level;
 
     @OneToMany(mappedBy="item")
     private List<MenuItem> items;
@@ -28,8 +31,6 @@ public class MenuItem {
     @ManyToOne(fetch = FetchType.LAZY, cascade={CascadeType.ALL})
     @JoinColumn(name="MNI_MNI_OID")
     private MenuItem item;
-
-
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MNI_PRM_OID")

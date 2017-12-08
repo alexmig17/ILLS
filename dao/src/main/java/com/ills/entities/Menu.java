@@ -9,12 +9,16 @@ import java.util.List;
 @Table(name = "MENU")
 public class Menu {
 
+    public static final String COL_OID = "oid";
+    public static final String COL_NAME="name";
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "MNU_OID")
     private long oid;
 
-    @Column(name = "MNU_NAME")
+    @Column(name = "MNU_NAME", unique = true)
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "menu")

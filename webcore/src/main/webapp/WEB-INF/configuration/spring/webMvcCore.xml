@@ -60,6 +60,8 @@
     <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"></property>
     </bean>
+
+    <bean id="modelMapper" class="org.modelmapper.ModelMapper"/>
     <mvc:resources mapping="/swagger-ui.html" location="classpath:/META-INF/resources/"/>
     <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
     <bean name="/applicationSwaggerConfig" class="conf.SwaggerConfig"/>

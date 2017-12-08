@@ -19,10 +19,10 @@ public class User implements EntityI {
     @Column(name = "USR_OID")
     private Long oid;
 
-    @Column(name = "USR_LOGIN")
+    @Column(name = "USR_LOGIN", unique = true)
     private String login;
 
-    @Column(name = "USR_PASSWORD")
+    @Column(name = "USR_PASSWORD", nullable = false)
     private String password;
 
     @Column(name = "USR_IS_ENABLE")
