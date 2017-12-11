@@ -15,6 +15,7 @@
         <intercept-url pattern="/static/**" access="permitAll" />
         <!--<intercept-url pattern="/admin" access="hasAuthority('OP_test')" />-->
         <intercept-url pattern="/**" access="isAuthenticated()" />
+        <csrf disabled="true"/>
     </http>
     <authentication-manager>
         <authentication-provider user-service-ref="customUserDetailsService">

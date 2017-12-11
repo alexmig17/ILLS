@@ -15,6 +15,9 @@ public class Menu extends EntityA<Long>{
     @Column(name = "MNU_OID")
     private Long oid;
 
+    @Column(name = "MNU_NAME", unique = true)
+    private String name;
+
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "menu")
     private List<MenuItem> items;
 
@@ -59,5 +62,13 @@ public class Menu extends EntityA<Long>{
 
     public void setContext(Context context) {
         this.context = context;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

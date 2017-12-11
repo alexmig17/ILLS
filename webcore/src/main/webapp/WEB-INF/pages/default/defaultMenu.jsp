@@ -10,7 +10,9 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"  %>
 <ul>
  <c:forEach items="${menu.items}" var="item" >
-	<li><a href="${item.name}"  >${item.name}</a></li>
+
+
+	<li><a href="${item.context.viewList[0].uri}"  >${item.name}</a></li>
 
  </c:forEach>
 </ul>

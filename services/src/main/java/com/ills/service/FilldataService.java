@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class FilldataService {
@@ -52,18 +53,62 @@ public class FilldataService {
         role.setRolePermissions(new ArrayList<>(Arrays.asList(rolePermission)));
         personDAO.add(person);
 
+        Menu menu = createMenu("Admin");
+
+        MenuItem itemForStudents = attachItem(menu, "Students");
+        createView(itemForStudents.getName(), "admin/students", Arrays.asList(itemForStudents.getContext()));
+
+        MenuItem itemForMenu = attachItem(menu, "Menu");
+        createView(itemForMenu.getName(), "admin/menu", Arrays.asList(itemForMenu.getContext()));
+
+        /*MenuItem item = attachItem(menu, "Students");
+        createView(item.getName(), "admin/students", Arrays.asList(item.getContext()));*/
+
+        menuDAO.add(menu);
+    }
+
+    private View createView(String name, String uri, List<Context> contexts){
+
+        View view = new View();
+        view.setName(name);
+        view.setUri(uri);
+        view.setContexts(contexts);
+
+        for (Context context : contexts) {
+            List<View> viewList = context.getViewList();
+            viewList = viewList == null ? new ArrayList<>() : viewList;
+            context.setViewList(viewList);
+            viewList.add(view);
+        }
+
+        return view;
+    }
+
+    private Menu createMenu(String name){
         Menu menu = new Menu();
+        menu.setName(name);
         Context context = new Context();
-        context.setName("admin");
+        context.setName(name.toLowerCase());
         menu.setContext(context);
 
+        return menu;
+    }
+
+    private MenuItem attachItem(Menu menu, String itemName){
         MenuItem item = new MenuItem();
+
         Context contextItem = new Context();
-        contextItem.setName("admin.student");
+        String prefix = menu.getContext().getName();
+        String itemContextName = prefix + itemName.toLowerCase();
+
+        contextItem.setName(itemContextName);
         item.setContext(contextItem);
         item.setMenu(menu);
-        item.setName("student");
-        menu.setItems(new ArrayList<>(Arrays.asList(item)));
-        menuDAO.add(menu);
+        item.setName(itemName);
+        List<MenuItem> listItems = menu.getItems();
+        listItems = listItems == null ? new ArrayList<>(): listItems;
+        menu.setItems(listItems);
+        listItems.add(item);
+        return  item;
     }
 }

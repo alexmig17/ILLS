@@ -8,9 +8,9 @@ public class MenuItemDTO {
 
     private int level;
 
-    private String context;
-
     private String name;
+
+    private ContextDTO context;
 
     private MenuDTO menu;
 
@@ -34,11 +34,11 @@ public class MenuItemDTO {
         this.level = level;
     }
 
-    public String getContext() {
+    public ContextDTO getContext() {
         return context;
     }
 
-    public void setContext(String context) {
+    public void setContext(ContextDTO context) {
         this.context = context;
     }
 

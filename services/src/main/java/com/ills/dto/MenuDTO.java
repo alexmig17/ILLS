@@ -12,7 +12,7 @@ public class MenuDTO {
 
     private List<MenuDTO> listMenu;
 
-    private PermissionDTO permission;
+    private ContextDTO context;
 
     public long getOid() {
         return oid;
@@ -46,11 +46,11 @@ public class MenuDTO {
         this.listMenu = listMenu;
     }
 
-    public PermissionDTO getPermission() {
-        return permission;
+    public ContextDTO getContext() {
+        return context;
     }
 
-    public void setPermission(PermissionDTO permission) {
-        this.permission = permission;
+    public void setContext(ContextDTO context) {
+        this.context = context;
     }
 }

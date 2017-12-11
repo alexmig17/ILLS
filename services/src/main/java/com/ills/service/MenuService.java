@@ -24,8 +24,8 @@ public class MenuService {
     public MenuDTO getFullMenuByName(String menuName){
 
         Criteria criteria = menuDAO.getCriteria();
-
-        criteria.add(Restrictions.eq("context.name", menuName));
+        criteria.createAlias("context", "context")
+                .add(Restrictions.eq("context.name", menuName));
 
 
 
