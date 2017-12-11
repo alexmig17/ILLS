@@ -7,12 +7,12 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "USER_ROLE")
-public class UserRole {
+public class UserRole extends EntityA<Long>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "USR_ROL_OID")
-    private long oid;
+    private Long oid;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USR_ROL_USR_OID", nullable = false)
@@ -22,11 +22,11 @@ public class UserRole {
     @JoinColumn(name = "USR_ROL_ROL_OID", nullable = false)
     private Role role;
 
-    public long getOid() {
+    public Long getOid() {
         return oid;
     }
 
-    public void setOid(long oid) {
+    public void setOid(Long oid) {
         this.oid = oid;
     }
 

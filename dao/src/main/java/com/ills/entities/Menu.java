@@ -1,25 +1,19 @@
 package com.ills.entities;
 
-import org.hibernate.annotations.GeneratorType;
-
+import java.lang.Long;
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "MENU")
-public class Menu {
+public class Menu extends EntityA<Long>{
 
     public static final String COL_OID = "oid";
-    public static final String COL_NAME="name";
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "MNU_OID")
-    private long oid;
-
-    @Column(name = "MNU_NAME", unique = true)
-    private String name;
+    private Long oid;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "menu")
     private List<MenuItem> items;
@@ -31,24 +25,16 @@ public class Menu {
     })
     private List<Menu> listMenu;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MNU_PRM_OID")
-    private Permission permission;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "MNU_CXT_OID", nullable = false, unique = true)
+    private Context context;
 
-    public long getOid() {
+    public Long getOid() {
         return oid;
     }
 
-    public void setOid(long oid) {
+    public void setOid(Long oid) {
         this.oid = oid;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public List<MenuItem> getItems() {
@@ -67,13 +53,11 @@ public class Menu {
         this.listMenu = listMenu;
     }
 
-    public Permission getPermission() {
-        return permission;
+    public Context getContext() {
+        return context;
     }
 
-    public void setPermission(Permission permission) {
-        this.permission = permission;
+    public void setContext(Context context) {
+        this.context = context;
     }
-
-
 }

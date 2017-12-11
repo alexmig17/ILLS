@@ -8,7 +8,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "STUDENT")
-public class Student implements EntityI {
+public class Student extends EntityA<Long>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,4 +26,37 @@ public class Student implements EntityI {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "student")
     private List<StudentEnrollment> studentEnrollments;
 
+    @Override
+    public Long getOid() {
+        return oid;
+    }
+
+    @Override
+    public void setOid(Long oid) {
+        this.oid = oid;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
+    }
+
+    public List<StudentEnrollment> getStudentEnrollments() {
+        return studentEnrollments;
+    }
+
+    public void setStudentEnrollments(List<StudentEnrollment> studentEnrollments) {
+        this.studentEnrollments = studentEnrollments;
+    }
 }

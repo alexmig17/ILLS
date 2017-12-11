@@ -5,15 +5,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "MENU_ITEM")
-public class MenuItem {
+public class MenuItem extends EntityA<Long>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "MNI_OID")
-    private long oid;
-
-    @Column(name = "MNI_CONTEXT")
-    private String context;
+    private Long oid;
 
     @Column(name = "MNI_NAME", unique = true)
     private String name;
@@ -32,24 +29,16 @@ public class MenuItem {
     @JoinColumn(name="MNI_MNI_OID")
     private MenuItem item;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MNI_PRM_OID")
-    private Permission permission;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "MNI_CXT_OID", nullable = false, unique = true)
+    private Context context;
 
-    public long getOid() {
+    public Long getOid() {
         return oid;
     }
 
-    public void setOid(long oid) {
+    public void setOid(Long oid) {
         this.oid = oid;
-    }
-
-    public String getContext() {
-        return context;
-    }
-
-    public void setContext(String context) {
-        this.context = context;
     }
 
     public String getName() {
@@ -76,19 +65,27 @@ public class MenuItem {
         this.items = items;
     }
 
-    public Permission getPermission() {
-        return permission;
-    }
-
-    public void setPermission(Permission permission) {
-        this.permission = permission;
-    }
-
     public MenuItem getItem() {
         return item;
     }
 
     public void setItem(MenuItem item) {
         this.item = item;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
     }
 }

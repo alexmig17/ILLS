@@ -7,21 +7,21 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "SCHOOL")
-public class School implements EntityI {
+public class School extends EntityA<Long>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "SCH_OID")
-    private long oid;
+    private Long oid;
 
     @Column(name = "SCH_SCHOOL_NAME")
     private String schoolName;
 
-    public long getOid() {
+    public Long getOid() {
         return oid;
     }
 
-    public void setOid(long oid) {
+    public void setOid(Long oid) {
         this.oid = oid;
     }
 

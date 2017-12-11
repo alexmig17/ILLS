@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity
 @Table(name = "PERSON")
 @ApiModel(value = "PERSON")
-public class Person implements EntityI {
+public class Person extends EntityA<Long>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

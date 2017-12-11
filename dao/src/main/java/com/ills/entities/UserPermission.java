@@ -10,18 +10,27 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "USER_PERMISSION")
 @DiscriminatorColumn(name = "USR_PRM_TYPE", discriminatorType = DiscriminatorType.STRING)
-public class UserPermission
+public class UserPermission extends EntityA<Long>
 {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "USR_PRM_OID")
-    private long oid;
+    private Long oid;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USR_PRM_PRM_OID", nullable = false)
     private Permission permission;
 
+    @Override
+    public Long getOid() {
+        return oid;
+    }
+
+    @Override
+    public void setOid(Long oid) {
+        this.oid = oid;
+    }
 }

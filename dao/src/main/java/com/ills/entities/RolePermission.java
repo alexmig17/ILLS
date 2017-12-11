@@ -9,11 +9,12 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "ROLE_PERMISSION")
-public class RolePermission {
+public class RolePermission extends EntityA<Long>{
 
     @Id
     @Column(name = "ROL_PRM_OID")
-    private long oid;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long oid;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ROL_PRM_ROL_OID")
@@ -23,11 +24,11 @@ public class RolePermission {
     @JoinColumn(name = "ROL_PRM_PRM_OID")
     private Permission permission;
 
-    public long getOid() {
+    public Long getOid() {
         return oid;
     }
 
-    public void setOid(long oid) {
+    public void setOid(Long oid) {
         this.oid = oid;
     }
 

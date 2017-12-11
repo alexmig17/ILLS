@@ -53,9 +53,14 @@ public class FilldataService {
         personDAO.add(person);
 
         Menu menu = new Menu();
-        menu.setName("admin");
+        Context context = new Context();
+        context.setName("admin");
+        menu.setContext(context);
+
         MenuItem item = new MenuItem();
-        item.setContext("admin.student");
+        Context contextItem = new Context();
+        contextItem.setName("admin.student");
+        item.setContext(contextItem);
         item.setMenu(menu);
         item.setName("student");
         menu.setItems(new ArrayList<>(Arrays.asList(item)));

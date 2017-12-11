@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "PERMISSION")
-public class Permission {
+public class Permission extends EntityA<Long>{
 
     public enum PermissionType{
         ROLE, MENU, MENU_ITEM

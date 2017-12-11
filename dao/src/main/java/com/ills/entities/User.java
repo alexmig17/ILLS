@@ -3,14 +3,13 @@ package com.ills.entities;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Alex on 21.11.2017.
  */
 @Entity
 @Table(name = "USER")
-public class User implements EntityI {
+public class User extends EntityA<Long>{
 
     public static final String PREFIX = "USR";
 

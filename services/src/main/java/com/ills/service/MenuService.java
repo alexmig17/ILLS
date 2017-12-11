@@ -24,7 +24,11 @@ public class MenuService {
     public MenuDTO getFullMenuByName(String menuName){
 
         Criteria criteria = menuDAO.getCriteria();
-        criteria.add(Restrictions.eq(Menu.COL_NAME, menuName));
+
+        criteria.add(Restrictions.eq("context.name", menuName));
+
+
+
         Menu menu = (Menu)criteria.uniqueResult();
         MenuDTO menuDto = modelMapper.map(menu, MenuDTO.class);
 

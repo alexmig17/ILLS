@@ -8,12 +8,12 @@ import java.util.List;
  */
 @Entity
 @Table(name="ROLE")
-public class Role {
+public class Role extends EntityA<Long>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ROL_OID")
-    private long oid;
+    private Long oid;
 
     @Column(name = "ROL_NAME")
     private String roleName;
@@ -21,11 +21,11 @@ public class Role {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy = "role")
     private List<RolePermission> rolePermissions;
 
-    public long getOid() {
+    public Long getOid() {
         return oid;
     }
 
-    public void setOid(long oid) {
+    public void setOid(Long oid) {
         this.oid = oid;
     }
 
