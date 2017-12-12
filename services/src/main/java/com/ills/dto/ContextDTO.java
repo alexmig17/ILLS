@@ -44,4 +44,9 @@ public class ContextDTO {
     public void setViewList(List<ViewDTO> viewList) {
         this.viewList = viewList;
     }
+
+    public String getUri(){
+
+        return getName().replaceAll("\\.", "/");
+    }
 }

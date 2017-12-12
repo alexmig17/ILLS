@@ -21,6 +21,9 @@ public class View {
     @Column(name = "VEW_URI")
     private String uri;
 
+    @Column(name = "VEW_ID", nullable = false, unique = true)
+    private String id;
+
     //private String type; // memo + uri,
 
     //private List<BasedBean> basedBeans;
@@ -75,5 +78,13 @@ public class View {
 
     public void setPermission(Permission permission) {
         this.permission = permission;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

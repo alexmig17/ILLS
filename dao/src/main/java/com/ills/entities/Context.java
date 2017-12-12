@@ -57,9 +57,4 @@ public class Context {
         this.viewList = viewList;
     }
 
-    public String getUri(){
-
-        return getName().replaceAll(".", "/");
-    }
-
 }

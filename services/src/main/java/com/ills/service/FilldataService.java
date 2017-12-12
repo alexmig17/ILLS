@@ -56,10 +56,11 @@ public class FilldataService {
         Menu menu = createMenu("Admin");
 
         MenuItem itemForStudents = attachItem(menu, "Students");
-        createView(itemForStudents.getName(), Arrays.asList(itemForStudents.getContext()));
+        createView(itemForStudents.getName(), "std.default",Arrays.asList(itemForStudents.getContext()));
+        createView(itemForStudents.getName() + " v1", "std.v1",Arrays.asList(itemForStudents.getContext()));
 
         MenuItem itemForMenu = attachItem(menu, "Menu");
-        createView(itemForMenu.getName(), Arrays.asList(itemForMenu.getContext()));
+        createView(itemForMenu.getName(), "mnu.default",Arrays.asList(itemForMenu.getContext()));
 
         /*MenuItem item = attachItem(menu, "Students");
         createView(item.getName(), "admin/students", Arrays.asList(item.getContext()));*/
@@ -67,11 +68,12 @@ public class FilldataService {
         menuDAO.add(menu);
     }
 
-    private View createView(String name, List<Context> contexts){
+    private View createView(String name,  String id, List<Context> contexts){
 
         View view = new View();
         view.setName(name);
         view.setContexts(contexts);
+        view.setId(id);
 
         for (Context context : contexts) {
             List<View> viewList = context.getViewList();
@@ -97,7 +99,7 @@ public class FilldataService {
 
         Context contextItem = new Context();
         String prefix = menu.getContext().getName();
-        String itemContextName = prefix + itemName.toLowerCase();
+        String itemContextName = prefix + "." + itemName.toLowerCase();
         contextItem.setName(itemContextName);
         item.setContext(contextItem);
         item.setMenu(menu);

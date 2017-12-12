@@ -20,7 +20,8 @@
 
 
     <link rel="stylesheet" href="${css}/components/common.css">
-    <script type="text/javascript" data-main="${js}/components/require.controller" src="${js}/libs/require.js"></script>
+    <link rel="stylesheet" href="${css}/components/menu.css">
+    <%--<script type="text/javascript" data-main="${js}/components/require.controller" src="${js}/libs/require.js"></script>--%>
 
 
 </head>
