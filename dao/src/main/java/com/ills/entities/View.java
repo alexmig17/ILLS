@@ -21,6 +21,10 @@ public class View {
     @Column(name = "VEW_URI")
     private String uri;
 
+    //private String type; // memo + uri,
+
+    //private List<BasedBean> basedBeans;
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
             name = "VIEW_CONTEXT",

@@ -56,10 +56,10 @@ public class FilldataService {
         Menu menu = createMenu("Admin");
 
         MenuItem itemForStudents = attachItem(menu, "Students");
-        createView(itemForStudents.getName(), "admin/students", Arrays.asList(itemForStudents.getContext()));
+        createView(itemForStudents.getName(), Arrays.asList(itemForStudents.getContext()));
 
         MenuItem itemForMenu = attachItem(menu, "Menu");
-        createView(itemForMenu.getName(), "admin/menu", Arrays.asList(itemForMenu.getContext()));
+        createView(itemForMenu.getName(), Arrays.asList(itemForMenu.getContext()));
 
         /*MenuItem item = attachItem(menu, "Students");
         createView(item.getName(), "admin/students", Arrays.asList(item.getContext()));*/
@@ -67,11 +67,10 @@ public class FilldataService {
         menuDAO.add(menu);
     }
 
-    private View createView(String name, String uri, List<Context> contexts){
+    private View createView(String name, List<Context> contexts){
 
         View view = new View();
         view.setName(name);
-        view.setUri(uri);
         view.setContexts(contexts);
 
         for (Context context : contexts) {
@@ -90,7 +89,6 @@ public class FilldataService {
         Context context = new Context();
         context.setName(name.toLowerCase());
         menu.setContext(context);
-
         return menu;
     }
 
@@ -100,7 +98,6 @@ public class FilldataService {
         Context contextItem = new Context();
         String prefix = menu.getContext().getName();
         String itemContextName = prefix + itemName.toLowerCase();
-
         contextItem.setName(itemContextName);
         item.setContext(contextItem);
         item.setMenu(menu);

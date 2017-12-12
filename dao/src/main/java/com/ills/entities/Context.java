@@ -56,4 +56,10 @@ public class Context {
     public void setViewList(List<View> viewList) {
         this.viewList = viewList;
     }
+
+    public String getUri(){
+
+        return getName().replaceAll(".", "/");
+    }
+
 }
