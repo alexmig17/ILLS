@@ -10,6 +10,8 @@ import java.util.List;
 @Table(name = "CONTEXT")
 public class Context {
 
+    public static final String COL_NAME = "name";
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "CXT_OID")

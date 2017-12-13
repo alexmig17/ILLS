@@ -4,6 +4,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="
        http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
@@ -13,11 +14,13 @@
        http://www.springframework.org/schema/mvc/spring-mvc.xsd
        http://www.springframework.org/schema/security
        http://www.springframework.org/schema/security/spring-security-4.2.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
         ">
     <import resource="dao/daoBeans.xml"/>
     <import resource="production.db/dbConfiguration.xml"/>
     <!--<import resource="security/securityConfiguration.xml"/>-->
-
+    <tx:annotation-driven/>
     <security:global-method-security pre-post-annotations="enabled">
         <security:expression-handler ref="expressionHandler"/>
     </security:global-method-security>
@@ -25,8 +28,6 @@
     <bean id="expressionHandler" class="org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler">
         <property name="permissionEvaluator"  ref="myPermissionEvaluator"/>
     </bean>
-
-    <bean id="myPermissionEvaluator" class="conf.security.MyPermissionEvaluator" />
 
     <mvc:annotation-driven/>
     <context:annotation-config/>
@@ -59,6 +60,18 @@
         <constructor-arg type="java.lang.Class" value="com.ills.entities.Menu"/>
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    <bean id="contextDAO"
+          class="com.ills.dao.DaoImpl">
+        <constructor-arg type="java.lang.Class" value="com.ills.entities.Context"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="viewDAO"
+          class="com.ills.dao.DaoImpl">
+        <constructor-arg type="java.lang.Class" value="com.ills.entities.View"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
 
 
     <bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer ">

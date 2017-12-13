@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ViewController {
 
     @RequestMapping(value = "**/view", method= RequestMethod.GET)
-    @PreAuthorize("hasPermission(#id, 'read')")
+    @PreAuthorize("hasPermission(#id, 'view')")
     public String prepareView(@RequestParam("id") String id){
 
 

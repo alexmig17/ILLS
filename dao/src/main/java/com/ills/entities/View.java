@@ -10,6 +10,8 @@ import java.util.List;
 @Table(name = "VIEW")
 public class View {
 
+    public static final String COL_ID = "id";
+
     @Id
     @Column(name = "VEW_OID")
     @GeneratedValue(strategy = GenerationType.AUTO)
