@@ -3,6 +3,7 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xmlns:beans="http://www.springframework.org/schema/beans"
              xmlns:context="http://www.springframework.org/schema/context"
+             xmlns:mvc="http://www.springframework.org/schema/mvc"
              xsi:schemaLocation="
         http://www.springframework.org/schema/security
         http://www.springframework.org/schema/security/spring-security-4.2.xsd
@@ -10,25 +11,16 @@
         http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-4.3.xsd
-        ">
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 
-   <beans:bean id="expressionHandler" class="org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler"/>
-    <global-method-security pre-post-annotations="enabled">
-        <expression-handler ref="expressionHandler"/>
-    </global-method-security>
+    <beans:import resource="../webMvcCore.xml"/>
 
-
-    <context:annotation-config/>
-    <context:component-scan base-package="com.ills, conf.security"/>
-
-
-<beans:import resource="../webMvcCore.xml"/>
-    <http auto-config="true">
+    <http use-expressions="true" auto-config="true">
         <intercept-url pattern="/fillDb/person" access="isAnonymous()" />
         <intercept-url pattern="/login" access="isAnonymous()" />
         <intercept-url pattern="/static/**" access="permitAll" />
-        <!--<intercept-url pattern="/admin" access="hasAuthority('OP_test')" />-->
         <intercept-url pattern="/**" access="isAuthenticated()" />
         <csrf disabled="true"/>
     </http>
@@ -49,5 +41,7 @@
         <beans:property name="userDetailsService" ref="customUserService" />
         <beans:property name="passwordEncoder" ref="encoder" />
     </beans:bean>-->
+
+
 
 </beans:beans>
