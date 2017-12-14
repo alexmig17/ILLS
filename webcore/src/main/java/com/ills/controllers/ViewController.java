@@ -14,7 +14,7 @@ public class ViewController {
     public String prepareView(@RequestParam("id") String id){
 
 
-        return "";
+        return "view";
     }
 
 }

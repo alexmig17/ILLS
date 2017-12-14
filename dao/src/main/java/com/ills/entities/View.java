@@ -28,7 +28,13 @@ public class View {
 
     //private String type; // memo + uri,
 
-    //private List<BasedBean> basedBeans;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "VIEW_BASED_BEAN",
+            joinColumns = { @JoinColumn(name = "VBB_VEW_OID") },
+            inverseJoinColumns = { @JoinColumn(name = "VBB_BSB_OID") }
+    )
+    private List<BasedBean> basedBeans;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(

@@ -35,4 +35,9 @@
         <put-attribute name="content" value="/WEB-INF/pages/error.jsp" />
     </definition>
 
+    <definition name="view" extends="base-definition">
+        <put-attribute name="title" value="view page" />
+        <put-attribute name="content" value="/WEB-INF/pages/view.jsp" />
+    </definition>
+
 </tiles-definitions>
