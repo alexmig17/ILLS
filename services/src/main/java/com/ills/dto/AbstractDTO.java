@@ -1,5 +1,6 @@
 package com.ills.dto;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -9,9 +10,9 @@ public class AbstractDTO {
 
     private String basedBeanClass;
 
-    private Map<String, String> beanProperties;
+    private Map<String, String> beanPropertyValues;
 
-    private Map<String, AbstractDTO> relations;
+    private Map<String, List<AbstractDTO>> relations;
 
     public String getBasedBeanClass() {
         return basedBeanClass;
@@ -22,18 +23,26 @@ public class AbstractDTO {
     }
 
     public Map<String, String> getBeanProperties() {
-        return beanProperties;
+        return beanPropertyValues;
     }
 
     public void setBeanProperties(Map<String, String> beanProperties) {
-        this.beanProperties = beanProperties;
+        this.beanPropertyValues = beanProperties;
     }
 
-    public Map<String, AbstractDTO> getRelations() {
+    public Map<String, String> getBeanPropertyValues() {
+        return beanPropertyValues;
+    }
+
+    public void setBeanPropertyValues(Map<String, String> beanPropertyValues) {
+        this.beanPropertyValues = beanPropertyValues;
+    }
+
+    public Map<String, List<AbstractDTO>> getRelations() {
         return relations;
     }
 
-    public void setRelations(Map<String, AbstractDTO> relations) {
+    public void setRelations(Map<String, List<AbstractDTO>> relations) {
         this.relations = relations;
     }
 }

@@ -18,6 +18,12 @@ public class BasedBean extends EntityA<Long>{
     @Column(name = "BSB_NAME")
     private String name;
 
+    @Column(name = "BSB_ENTITY_NAME")
+    private String entityName;
+
+    @Column(name = "BSB_DTO_NAME")
+    private String dtoName;
+
     @Override
     public Long getOid() {
         return oid;
@@ -25,6 +31,22 @@ public class BasedBean extends EntityA<Long>{
 
     public void setOid(Long oid) {
         this.oid = oid;
+    }
+
+    public String getEntityName() {
+        return entityName;
+    }
+
+    public void setEntityName(String entityName) {
+        this.entityName = entityName;
+    }
+
+    public String getDtoName() {
+        return dtoName;
+    }
+
+    public void setDtoName(String dtoName) {
+        this.dtoName = dtoName;
     }
 
     public String getName() {

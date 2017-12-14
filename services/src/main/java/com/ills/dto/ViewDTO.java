@@ -2,7 +2,7 @@ package com.ills.dto;
 
 import java.util.List;
 
-public class ViewDTO {
+public class ViewDTO extends AbstractEntityDtoConverter<ViewDTO> implements Dto{
 
     private Long oid;
 
@@ -12,7 +12,13 @@ public class ViewDTO {
 
     private String uri;
 
+    private String jsp;
+
+    private List<BasedBeanDTO> basedBeans;
+
     private List<ContextDTO> contexts;
+
+    private PermissionDTO permission;
 
     public Long getOid() {
         return oid;
@@ -52,5 +58,29 @@ public class ViewDTO {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getJsp() {
+        return jsp;
+    }
+
+    public void setJsp(String jsp) {
+        this.jsp = jsp;
+    }
+
+    public List<BasedBeanDTO> getBasedBeans() {
+        return basedBeans;
+    }
+
+    public void setBasedBeans(List<BasedBeanDTO> basedBeans) {
+        this.basedBeans = basedBeans;
+    }
+
+    public PermissionDTO getPermission() {
+        return permission;
+    }
+
+    public void setPermission(PermissionDTO permission) {
+        this.permission = permission;
     }
 }

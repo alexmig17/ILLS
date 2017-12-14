@@ -27,8 +27,6 @@ public class MenuService {
         criteria.createAlias("context", "context")
                 .add(Restrictions.eq("context.name", menuName));
 
-
-
         Menu menu = (Menu)criteria.uniqueResult();
         MenuDTO menuDto = modelMapper.map(menu, MenuDTO.class);
 

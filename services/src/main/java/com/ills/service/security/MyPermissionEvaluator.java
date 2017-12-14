@@ -1,5 +1,8 @@
 package com.ills.service.security;
 
+import com.ills.dto.ContextDTO;
+import com.ills.dto.PermissionDTO;
+import com.ills.dto.ViewDTO;
 import com.ills.entities.Context;
 import com.ills.entities.Permission;
 import com.ills.entities.View;
@@ -38,11 +41,11 @@ public class MyPermissionEvaluator implements PermissionEvaluator {
         if ("view".equals(o1)) {
 
             String contextName = getAppContext();
-            Context context = contextService.getContextByName(contextName);
+            ContextDTO context = contextService.getContextByName(contextName);
             if (context == null){
                 throw new RuntimeException("can not find context with name " + contextName);
             }
-            View view = viewService.getViewById((String)o);
+            ViewDTO view = viewService.getViewById((String)o);
 
             if (view == null){
                 throw new RuntimeException("can not find view with id " + o);
@@ -65,7 +68,7 @@ public class MyPermissionEvaluator implements PermissionEvaluator {
         return true;
     }
 
-    private void addPermission(Permission permission, List<String> permissions){
+    private void addPermission(PermissionDTO permission, List<String> permissions){
         String permissionString = permission == null ? null : permission.getName();
         if (!StringUtils.isEmpty(permissionString)){
             permissions.add(permissionString);

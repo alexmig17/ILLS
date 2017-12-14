@@ -124,7 +124,12 @@ public class DaoImpl<E, K extends Serializable> implements Dao<E, K> {
 
     @Override
     public Criteria getCriteria() throws DaoException {
-        return getSession().createCriteria(type);
+        return getCriteriaByClass(type);
+    }
+
+    @Override
+    public Criteria getCriteriaByClass(Class clazz) throws DaoException {
+        return getSession().createCriteria(clazz);
     }
 
     @Override

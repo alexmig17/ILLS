@@ -79,6 +79,13 @@ public interface Dao <E, K extends Serializable>{
     Criteria getCriteria() throws DaoException;
 
     /**
+     * Return created criteria
+     *
+     * @throws DaoException
+     */
+    Criteria getCriteriaByClass(Class clazz) throws DaoException;
+
+    /**
      *
      * @return class for current entity
      */

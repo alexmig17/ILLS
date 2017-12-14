@@ -1,6 +1,10 @@
 package com.ills.entities;
 
+import org.hibernate.annotations.Type;
+import org.hibernate.type.BlobType;
+
 import javax.persistence.*;
+import java.sql.Blob;
 import java.util.List;
 
 /**
@@ -25,6 +29,13 @@ public class View {
 
     @Column(name = "VEW_ID", nullable = false, unique = true)
     private String id;
+
+    /*@Column(name = "VIEW_CONTENT")
+    @Lob
+    private Blob content;*/
+
+    @Column(name = "VEW_JSP")
+    private String jsp;
 
     //private String type; // memo + uri,
 
@@ -94,5 +105,21 @@ public class View {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getJsp() {
+        return jsp;
+    }
+
+    public void setJsp(String jsp) {
+        this.jsp = jsp;
+    }
+
+    public List<BasedBean> getBasedBeans() {
+        return basedBeans;
+    }
+
+    public void setBasedBeans(List<BasedBean> basedBeans) {
+        this.basedBeans = basedBeans;
     }
 }
