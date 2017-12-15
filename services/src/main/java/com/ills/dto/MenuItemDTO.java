@@ -18,6 +18,8 @@ public class MenuItemDTO {
 
     private MenuItemDTO item;
 
+    private boolean isSelected;
+
     public long getOid() {
         return oid;
     }
@@ -72,5 +74,13 @@ public class MenuItemDTO {
 
     public void setItem(MenuItemDTO item) {
         this.item = item;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 }

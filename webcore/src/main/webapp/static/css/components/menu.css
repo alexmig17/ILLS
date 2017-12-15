@@ -50,6 +50,10 @@ ul{
   position: relative;
 }
 
+.menu_selected{
+  background: #28b32d
+}
+
 .menu__drop{
   position: absolute;
   width: 100%;

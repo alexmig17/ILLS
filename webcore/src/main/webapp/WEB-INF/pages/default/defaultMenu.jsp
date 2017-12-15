@@ -15,9 +15,9 @@
         <li class="left-menu-name">${menu.name}</li>
          <c:forEach items="${menu.items}" var="item" >
 
-            <li class="menu__list">
 
 
+            <li class="menu__list ${item.selected == true ? 'menu_selected' : ''}">
                 <a href="${item.context.uri}/view?name=${item.context.viewList[0].id}"  >${item.name}</a>
                 <c:if test= "${fn:length(item.context.viewList) > 1}">
                     <ul class="menu__drop">
