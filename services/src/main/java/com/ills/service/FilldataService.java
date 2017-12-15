@@ -1,6 +1,8 @@
 package com.ills.service;
 
 import com.ills.dao.Dao;
+import com.ills.dto.Dto;
+import com.ills.dto.StudentDTO;
 import com.ills.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -56,11 +58,13 @@ public class FilldataService {
         Menu menu = createMenu("Admin");
 
         MenuItem itemForStudents = attachItem(menu, "Students");
-        createView(itemForStudents.getName(), "std.default",Arrays.asList(itemForStudents.getContext()));
-        createView(itemForStudents.getName() + " v1", "std.v1",Arrays.asList(itemForStudents.getContext()));
+        View view = createView(itemForStudents.getName(), "std.list.default",Arrays.asList(itemForStudents.getContext()), "students");
+
+        createBasedBean(view, Student.class, StudentDTO.class);
+        createView(itemForStudents.getName() + " v1", "std.v1",Arrays.asList(itemForStudents.getContext()), "students");
 
         MenuItem itemForMenu = attachItem(menu, "Menu");
-        createView(itemForMenu.getName(), "mnu.default",Arrays.asList(itemForMenu.getContext()));
+        createView(itemForMenu.getName(), "mnu.default",Arrays.asList(itemForMenu.getContext()), "menu");
 
         /*MenuItem item = attachItem(menu, "Students");
         createView(item.getName(), "admin/students", Arrays.asList(item.getContext()));*/
@@ -68,12 +72,25 @@ public class FilldataService {
         menuDAO.add(menu);
     }
 
-    private View createView(String name,  String id, List<Context> contexts){
+    private  void createBasedBean(View view, Class<? extends EntityA> entityClass, Class<? extends Dto> dtoClass){
+        BasedBean basedBean = new BasedBean();
+        basedBean.setDtoName(dtoClass.getName());
+        basedBean.setEntityName(entityClass.getName());
+        basedBean.setName(entityClass.getSimpleName());
+        List<BasedBean> basedBeans = view.getBasedBeans();
+        basedBeans = basedBeans == null ? new ArrayList<>() : basedBeans;
+        view.setBasedBeans(basedBeans);
+        basedBeans.add(basedBean);
+    }
+
+
+    private View createView(String name,  String id, List<Context> contexts, String jsp){
 
         View view = new View();
         view.setName(name);
         view.setContexts(contexts);
         view.setId(id);
+        view.setJsp(jsp);
 
         for (Context context : contexts) {
             List<View> viewList = context.getViewList();

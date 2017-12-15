@@ -39,7 +39,7 @@ public class View {
 
     //private String type; // memo + uri,
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
             name = "VIEW_BASED_BEAN",
             joinColumns = { @JoinColumn(name = "VBB_VEW_OID") },

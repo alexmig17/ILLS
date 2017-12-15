@@ -2,8 +2,10 @@ package com.ills.controllers;
 
 import com.ills.dto.BasedBeanDTO;
 import com.ills.dto.Dto;
+import com.ills.dto.MenuDTO;
 import com.ills.dto.ViewDTO;
 import com.ills.entities.View;
+import com.ills.service.MenuService;
 import com.ills.service.ViewService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +24,16 @@ public class ViewController {
     @Autowired
     private ViewService viewService;
 
+    @Autowired
+    private MenuService menuService;
+
 
     @RequestMapping(value = "**/view", method= RequestMethod.GET)
     @PreAuthorize("hasPermission(#id, 'view')")
     public String prepareView(@RequestParam("id") String id, Model model){
+
+        MenuDTO menuDTO = menuService.getFullMenuByName("admin");
+        model.addAttribute("menu", menuDTO);
 
         ViewDTO viewDTO = viewService.getViewById(id);
         for(BasedBeanDTO basedBean: viewDTO.getBasedBeans()){

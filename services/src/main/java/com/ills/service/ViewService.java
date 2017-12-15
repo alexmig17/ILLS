@@ -39,11 +39,13 @@ public class ViewService {
     @Transactional
     public List<Dto> getPaginatedDtoList(BasedBeanDTO basedBean, int start, int maxSize) {
         Class classObj = null;
+
         try {
             classObj = Class.forName(basedBean.getEntityName());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
         Criteria criteria = viewDAO.getCriteriaByClass(classObj);
         criteria.setFirstResult(start);
         criteria.setMaxResults(maxSize);
