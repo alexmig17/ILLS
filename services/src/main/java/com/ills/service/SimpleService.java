@@ -21,7 +21,7 @@ public class SimpleService {
     @Transactional
     public List<PersonDTO> getAllPersons(){
         List<Person> list = personDAO.getAll().orElseGet(() -> new ArrayList<>());
-        List<PersonDTO> persons = list.stream().map(person -> new PersonDTO(person)).collect(Collectors.toList());
+        List<PersonDTO> persons = new ArrayList<>(); /*list.stream().map(person -> new PersonDTO(person)).collect(Collectors.toList());*/
         return persons;
     }
 

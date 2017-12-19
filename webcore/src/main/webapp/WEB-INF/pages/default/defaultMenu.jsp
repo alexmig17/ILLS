@@ -10,23 +10,22 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+
+<%--<jsp:useBean id="menu" class="com.ills.dto.MenuDTO" />--%>
 <div class="side">
-    <ul class="menu">
-        <li class="left-menu-name">${menu.name}</li>
-         <c:forEach items="${menu.items}" var="item" >
+    <nav class="left_side_menu">
+        <input type="checkbox" name="toggle" id="menu" class="toggleMenu">
+        <label for="menu" class="toggleMenu"><i class="fa fa-bars"></i>${menu.name}</label>
+        <ul >
+            <c:if test="${fn:length(menu.items) > 0}" >
+                <c:set var="items" value="${menu.items}" scope="request"/>
+                <c:set var="nestingCount" value="0" scope="request" />
+                <c:set var="nestingLevel" value="" scope="request" />
+                <jsp:include page="/WEB-INF/pages/default/defaultMenuItems.jsp"/>
+            </c:if>
+        </ul>
 
 
+    </nav>
 
-            <li class="menu__list ${item.selected == true ? 'menu_selected' : ''}">
-                <a href="${item.context.uri}/view?name=${item.context.viewList[0].id}"  >${item.name}</a>
-                <c:if test= "${fn:length(item.context.viewList) > 1}">
-                    <ul class="menu__drop">
-                    <c:forEach items="${item.context.viewList}" var="view" >
-                        <li><a href="${item.context.uri}/view?id=${view.id}"  >${view.name}</a></li>
-                    </c:forEach>
-                    </ul>
-                </c:if>
-            </li>
-         </c:forEach>
-    </ul>
 </div>

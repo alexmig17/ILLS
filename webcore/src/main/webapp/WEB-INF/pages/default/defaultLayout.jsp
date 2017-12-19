@@ -18,9 +18,9 @@
     <tiles:importAttribute name="title" />
     <title><%--<spring:message code="${title}"></spring:message>--%></title>
 
-
-    <link rel="stylesheet" href="${css}/components/common.css">
-    <link rel="stylesheet" href="${css}/components/menu.css">
+    <link rel="stylesheet" type="text/css" href="${css}/libs/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="${css}/components/common.css">
+    <link rel="stylesheet" type="text/css" href="${css}/components/menu.css">
     <%--<script type="text/javascript" data-main="${js}/components/require.controller" src="${js}/libs/require.js"></script>--%>
 
 

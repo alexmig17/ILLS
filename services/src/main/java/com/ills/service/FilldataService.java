@@ -53,14 +53,21 @@ public class FilldataService {
         rolePermission.setPermission(permission);
         role.setRoleName("ROLE_ADMIN");
         role.setRolePermissions(new ArrayList<>(Arrays.asList(rolePermission)));
-        personDAO.add(person);
+
 
         Menu menu = createMenu("Admin");
 
         MenuItem itemForStudents = attachItem(menu, "Students");
+
+        MenuItem addStudentItem = attachMenuItem(itemForStudents, "add");
+
+        View viewAddStudent = createView(addStudentItem.getName(), "std.add.default", Arrays.asList(addStudentItem.getContext()), "addStudent");
+
         View view = createView(itemForStudents.getName(), "std.list.default",Arrays.asList(itemForStudents.getContext()), "students");
 
-        createBasedBean(view, Student.class, StudentDTO.class);
+        BasedBean studentBB = createBasedBean(Student.class, StudentDTO.class);
+        attachBasedBean(studentBB, view);
+        attachBasedBean(studentBB, viewAddStudent);
         createView(itemForStudents.getName() + " v1", "std.v1",Arrays.asList(itemForStudents.getContext()), "students");
 
         MenuItem itemForMenu = attachItem(menu, "Menu");
@@ -70,13 +77,38 @@ public class FilldataService {
         createView(item.getName(), "admin/students", Arrays.asList(item.getContext()));*/
 
         menuDAO.add(menu);
+        personDAO.add(person);
     }
 
-    private  void createBasedBean(View view, Class<? extends EntityA> entityClass, Class<? extends Dto> dtoClass){
+    private MenuItem attachMenuItem(MenuItem item, String name){
+        MenuItem newItem = new MenuItem();
+
+        Context contextItem = new Context();
+        String prefix = item.getContext().getName();
+
+        String itemContextName = prefix + "." + name.toLowerCase();
+        contextItem.setName(itemContextName);
+        newItem.setContext(contextItem);
+        newItem.setName(name);
+        newItem.setItem(item);
+
+        List<MenuItem> listItems = item.getItems();
+
+        listItems = listItems == null ? new ArrayList<>(): listItems;
+        item.setItems(listItems);
+        listItems.add(newItem);
+        return newItem;
+    }
+
+    private  BasedBean createBasedBean(Class<? extends EntityA> entityClass, Class<? extends Dto> dtoClass){
         BasedBean basedBean = new BasedBean();
         basedBean.setDtoName(dtoClass.getName());
         basedBean.setEntityName(entityClass.getName());
         basedBean.setName(entityClass.getSimpleName());
+        return basedBean;
+    }
+
+    private  void attachBasedBean(BasedBean basedBean, View view){
         List<BasedBean> basedBeans = view.getBasedBeans();
         basedBeans = basedBeans == null ? new ArrayList<>() : basedBeans;
         view.setBasedBeans(basedBeans);

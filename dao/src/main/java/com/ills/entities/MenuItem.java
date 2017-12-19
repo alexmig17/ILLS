@@ -16,13 +16,13 @@ public class MenuItem extends EntityA<Long>{
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MNI_MNU_OID", nullable = false)
+    @JoinColumn(name = "MNI_MNU_OID")
     private Menu menu;
 
     @Column(name ="MNI_LEVEL")
     private int level;
 
-    @OneToMany(mappedBy="item")
+    @OneToMany(mappedBy="item", cascade = CascadeType.ALL)
     private List<MenuItem> items;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade={CascadeType.ALL})

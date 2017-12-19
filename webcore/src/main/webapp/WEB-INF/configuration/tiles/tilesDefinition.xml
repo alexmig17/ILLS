@@ -40,4 +40,11 @@
         <put-attribute name="content" value="/WEB-INF/pages/view.jsp" />
     </definition>
 
+    <definition name="addStudent" extends="base-definition">
+        <put-attribute name="title" value="form for add student" />
+        <put-attribute name="content" value="/WEB-INF/pages/student/addStudent.jsp" />
+    </definition>
+
+
+
 </tiles-definitions>

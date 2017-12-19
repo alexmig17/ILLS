@@ -9,7 +9,11 @@ import java.util.stream.Stream;
 
 public class PersonDTO {
 
-    public PersonDTO(Person person) {
+    public PersonDTO(){
+
+    }
+
+    /*public PersonDTO(Person person) {
 
         Map<String, Method> personGetMethods =GET_SET_METHODS.get(person.getClass()).get("get");
         Map<String, Method> personDtoSetMethods =GET_SET_METHODS.get(this.getClass()).get("set");
@@ -40,9 +44,9 @@ public class PersonDTO {
                 }
             }
         }
-    }
+    }*/
 
-    public static void main(String ...args) throws Exception{
+    /*public static void main(String ...args) throws Exception{
         Person person = new Person();
         person.setDob(new Date());
         person.setFirstName("Aliaksey");
@@ -79,9 +83,9 @@ public class PersonDTO {
 
         System.out.println(dto.toString());
 
-    }
+    }*/
 
-    private static final Map<Class, Map<String, Map<String, Method>>> GET_SET_METHODS;
+    /*private static final Map<Class, Map<String, Map<String, Method>>> GET_SET_METHODS;
     static {
         GET_SET_METHODS = new HashMap<>();
         Stream<Method> psnMethodStream = Arrays.stream(Person.class.getDeclaredMethods());
@@ -98,14 +102,14 @@ public class PersonDTO {
         perosnDtoMap.put("set", personDtoSetMethodMap);
         GET_SET_METHODS.put(Person.class, perosnMap);
         GET_SET_METHODS.put(PersonDTO.class, perosnDtoMap);
-    }
+    }*/
 
-    private static Map<String, Method> getMethodFromClassByPrefix(Class clazz, String prefix){
+    /*private static Map<String, Method> getMethodFromClassByPrefix(Class clazz, String prefix){
         Stream<Method> methodStream = Arrays.stream(clazz.getDeclaredMethods());
         Stream<Method> filteredMethodStream = methodStream.filter(method -> method.getName().startsWith(prefix));
         Map<String, Method> methodMap = filteredMethodStream.collect(Collectors.toMap(Method::getName, method -> method));
         return methodMap;
-    }
+    }*/
 
     private Long oid;
 

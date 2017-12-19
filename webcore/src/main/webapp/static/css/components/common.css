@@ -10,37 +10,36 @@ body {
   font-size: 12px;
 }
 
-
 .wrapper {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
+
 .content {
   flex: 1 0 auto;
 }
+
 .footer {
   flex: 0 0 auto;
 }
 
+#header {
+  background: #ccc;
+  padding: 20px;
+  }
 
-  #header {
-    background: #ccc;
-    padding: 20px;
-    }
+#sidebar {
+  float: left;
+  width: 300px;
+  }
 
-  #sidebar {
-    float: lefts;
-    width: 30%;
-    background: #999;
-    }
+#content {
+  margin-right: 34%;
+  }
 
-  #content {
-    margin-right: 34%;
-    }
-
-  #footer {
-    clear: right;
-    background: #eee;
-    padding: 20px;
-    }
+#footer {
+  clear: right;
+  background: #eee;
+  padding: 20px;
+  }

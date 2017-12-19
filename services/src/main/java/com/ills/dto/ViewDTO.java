@@ -20,6 +20,8 @@ public class ViewDTO extends AbstractEntityDtoConverter<ViewDTO> implements Dto{
 
     private PermissionDTO permission;
 
+    private boolean selected;
+
     public Long getOid() {
         return oid;
     }
@@ -82,5 +84,13 @@ public class ViewDTO extends AbstractEntityDtoConverter<ViewDTO> implements Dto{
 
     public void setPermission(PermissionDTO permission) {
         this.permission = permission;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 }
