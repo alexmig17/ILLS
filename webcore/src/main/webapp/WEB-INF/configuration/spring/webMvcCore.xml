@@ -72,6 +72,14 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
+    <bean id="studentDAO"
+          class="com.ills.dao.DaoImpl">
+        <constructor-arg type="java.lang.Class" value="com.ills.entities.Student"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+
+
 
 
     <bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer ">

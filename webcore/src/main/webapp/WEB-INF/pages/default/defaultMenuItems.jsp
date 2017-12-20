@@ -16,12 +16,12 @@
     <c:set var="items" value="${item.items}" scope="request"/>
         <li ${item.selected == true ?"class ='menu_selected'" : ""}>
             <div class="line">
-                <a href="/ills/${item.context.uri}/view?id=${item.context.viewList[0].id}"  >${item.name}</a>
+                <a href="/ills/${item.context.uri}/view?viewId=${item.context.viewList[0].id}"  >${item.name}</a>
                 <c:if test= "${fn:length(item.context.viewList) > 1}">
                     <div class="toggleDropMenu">
                         <ul class="menu__drop">
                             <c:forEach items="${item.context.viewList}" var="view" >
-                                <li ${view.selected == true ? "class =' menu_selected'" : ''}><a href="/ills/${item.context.uri}/view?id=${view.id}"  >${view.name}</a></li>
+                                <li ${view.selected == true ? "class =' menu_selected'" : ''}><a href="/ills/${item.context.uri}/view?viewId=${view.id}"  >${view.name}</a></li>
                             </c:forEach>
                         </ul>
                     </div>

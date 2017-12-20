@@ -38,7 +38,7 @@ public class MyPermissionEvaluator implements PermissionEvaluator {
     public boolean hasPermission(Authentication authentication, Object o, Object o1){
         boolean hasPermission = false;
 
-        if ("view".equals(o1)) {
+        if ("viewId".equals(o1)) {
 
             String contextName = getAppContext();
             ContextDTO context = contextService.getContextByName(contextName);

@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+import static com.ills.controllers.ControllerUtil.getAppContext;
+import static com.ills.controllers.ControllerUtil.markItem;
+
 @Controller
 public class ViewController {
 
@@ -26,14 +29,14 @@ public class ViewController {
     private MenuService menuService;
 
     @GetMapping(value = "**/view")
-    @PreAuthorize("hasPermission(#id, 'view')")
-    public String prepareView(@RequestParam("id") String id, Model model, HttpServletRequest request){
+    @PreAuthorize("hasPermission(#viewId, 'view')")
+    public String prepareView(@RequestParam("viewId") String viewId, Model model, HttpServletRequest request){
 
         MenuDTO menuDTO = menuService.getFullMenuByName("admin");
-        markItem(menuDTO, getAppContext(request), id);
+        markItem(menuDTO, getAppContext(request), viewId);
         model.addAttribute("menu", menuDTO);
 
-        ViewDTO viewDTO = viewService.getViewById(id);
+        ViewDTO viewDTO = viewService.getViewById(viewId);
         for(BasedBeanDTO basedBean: viewDTO.getBasedBeans()){
             List<Dto> dtoList = viewService.getPaginatedDtoList(basedBean, 0, 10);
             System.out.println(dtoList);
@@ -41,50 +44,27 @@ public class ViewController {
         return viewDTO.getJsp();
     }
 
-    @GetMapping(value = "**/add/view")
-    @PreAuthorize("hasPermission(#id, 'view')")
-    public String prepareAddView(@RequestParam("id") String id, Model model, HttpServletRequest request){
+//    @GetMapping(value = "**/add/view")
+//    @PreAuthorize("hasPermission(#viewId, 'viewId')")
+//    public String prepareAddView(@RequestParam("viewId") String id, Model model, HttpServletRequest request){
+//
+//        MenuDTO menuDTO = menuService.getFullMenuByName("admin");
+//        markItem(menuDTO, getAppContext(request), id);
+//        model.addAttribute("menu", menuDTO);
+//        ViewDTO viewDTO = viewService.getViewById(id);
+//        return viewDTO.getJsp();
+//    }
 
-        MenuDTO menuDTO = menuService.getFullMenuByName("admin");
-        markItem(menuDTO, getAppContext(request), id);
-        model.addAttribute("menu", menuDTO);
-        ViewDTO viewDTO = viewService.getViewById(id);
-        return viewDTO.getJsp();
-    }
+//    @PostMapping(value = "**/add/view")
+//    @PreAuthorize("hasPermission(#viewId, 'viewId')")
+//    public String postAddView(@RequestParam("id") String id, Model model, HttpServletRequest request, @ModelAttribute StudentDTO studentDTO){
+//        System.out.println("hi");
+//        MenuDTO menuDTO = menuService.getFullMenuByName("admin");
+//        markItem(menuDTO, getAppContext(request), id);
+//        model.addAttribute("menu", menuDTO);
+//        ViewDTO viewDTO = viewService.getViewById(id);
+//        return viewDTO.getJsp();
+//    }
 
-    @PostMapping(value = "**/add/view")
-    @PreAuthorize("hasPermission(#id, 'view')")
-    public String postAddView(@RequestParam("id") String id, Model model, HttpServletRequest request,@RequestBody MultiValueMap<String,String> formData, @ModelAttribute StudentDTO studentDTO){
-        System.out.println("hi");
-        MenuDTO menuDTO = menuService.getFullMenuByName("admin");
-        markItem(menuDTO, getAppContext(request), id);
-        model.addAttribute("menu", menuDTO);
-        ViewDTO viewDTO = viewService.getViewById(id);
-        return viewDTO.getJsp();
-    }
 
-    private String getAppContext(HttpServletRequest request){
-        String uri = request.getRequestURI();
-        uri = uri.replace("/view", "");
-        uri = uri.replace("/ills/", "");
-        return uri.replace("/", ".");
-    }
-
-    private void markItem(MenuDTO menu, String context, String viewId){
-
-        for (MenuItemDTO menuItemDTO : menu.getItems()) {
-            String checkingContext = menuItemDTO.getContext().getName();
-            if(context.startsWith(checkingContext)){
-                menuItemDTO.setSelected(true);
-                if (context.equals(checkingContext)){
-                    menuItemDTO.getContext().getViewList();
-                    for (ViewDTO viewDTO : menuItemDTO.getContext().getViewList()) {
-                        if (viewDTO.getId().equals(viewId)){
-                            viewDTO.setSelected(true);
-                        }
-                    }
-                }
-            }
-        }
-    }
 }
